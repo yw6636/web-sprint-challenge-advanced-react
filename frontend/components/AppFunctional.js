@@ -33,7 +33,7 @@ export default function AppFunctional(props) {
   function getXY() {
     // It is not necessary to have a state to track the coordinates.
     // It's enough to know what index the "B" is at, to be able to calculate them.
-    return (`${x}, ${y}`)
+    return (`(${x}, ${y})`)
   }
 
   function getXYMessage() {
@@ -59,9 +59,10 @@ export default function AppFunctional(props) {
     if(direction === 'left'){
       if(x - 1 === 0) {
         setMessages("You can't go left")
-        return xy
+        return xy  
       }
       setX (x - 1)
+      setY (y)
       setXY (xy - 1)
       setMoves(moves + 1)
       setMessages(initialMessage)
@@ -72,6 +73,7 @@ export default function AppFunctional(props) {
         return xy
       }
       setX (x + 1)
+      setY (y)
       setXY (xy + 1)
       setMoves(moves + 1)
       setMessages(initialMessage)
@@ -81,6 +83,7 @@ export default function AppFunctional(props) {
         setMessages("You can't go up")
         return xy
       }
+      setX (x)
       setY (y - 1)
       setXY (xy - 3)
       setMoves(moves + 1)
@@ -91,6 +94,7 @@ export default function AppFunctional(props) {
         setMessages("You can't go down")
         return xy
       }
+      setX (x)
       setY (y + 1)
       setXY (xy + 3)
       setMoves(moves + 1)
@@ -130,7 +134,7 @@ export default function AppFunctional(props) {
       "email": formValue
     }
     axios.post('http://localhost:9000/api/result', toSend)
-      .then(({data}) => {setMessages(data.message)})
+      .then(({data}) => {console.log(data.message), setMessages(data.message)})
       .finally(setFormValue(''))
   }
 

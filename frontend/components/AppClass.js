@@ -134,7 +134,7 @@ export default class AppClass extends React.Component {
     }
     axios.post('http://localhost:9000/api/result', toSend)
       .then (({data}) => {this.setState ({message: data.message})})
-      .finally (this.setState({...this.state, formValues: '', message: 'lady win #49'}))
+      .finally (this.setState({...this.state, formValues: '', message: ''}))
   }
  
   onSubmit = (evt) => {
